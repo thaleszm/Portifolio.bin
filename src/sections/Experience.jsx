@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 const experiences = [
   {
     role: "Web Developer",
-    company: "Brain Mentors",
+    company: "Alura",
     duration: "2022",
     description:
       "Worked with team to build high-performance apps, integrated AI features, and improved engagement by 10%.",
@@ -13,17 +13,17 @@ const experiences = [
 
   {
     role: "Web Developer Intern",
-    company: "Mobisoft Technologies",
+    company: "Rocketseat",
     duration: "2022 - 2023",
     description:
-      "In this internship , I gained valuable hands on experience and exposure to various aspects of web development.",
+      "In this course , I gained valuable hands on experience and exposure to various aspects of web development.",
   },
   {
-    role: "Graduate Engineer",
-    company: "HCL Technologies",
-    duration: "2024 - 2025",
+    role: "Graduate Industrial Automation ",
+    company: "IFF (Instituto Federal Fluminense)",
+    duration: "2023 - 2025",
     description:
-      "Built the frontend of a GenAI-powered PV Intake Application using Next.js and TypeScript for a U.S life sciences client, enabling automated patient report processing across global regions.",
+      "Built the frontend and backend of a CNC pen using Next.js and TypeScript for a school project, with Arduino integration using C++ and hadware",
   },
 ];
 
