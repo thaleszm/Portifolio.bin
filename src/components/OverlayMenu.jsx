@@ -2,7 +2,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FiX } from "react-icons/fi";
 
 export default function OverlayMenu({ isOpen, onClose }) {
-  // Pick clip origin based on screen width
   const isMobile = typeof window !== "undefined" && window.innerWidth < 1024; // lg breakpoint
   const origin = isMobile ? "95% 8%" : "50% 8%";
 
@@ -17,7 +16,6 @@ export default function OverlayMenu({ isOpen, onClose }) {
           transition={{ duration: 0.7, ease: [0.4, 0, 0.2, 1] }}
           style={{ backgroundColor: "rgba(0,0,0,0.95)" }}
         >
-          {/* Close Button */}
           <button
             onClick={onClose}
             className="absolute top-6 right-6 text-white text-3xl"
@@ -26,7 +24,6 @@ export default function OverlayMenu({ isOpen, onClose }) {
             <FiX />
           </button>
 
-          {/* Menu Links */}
           <ul className="space-y-6 text-center">
             {[
               "Home",

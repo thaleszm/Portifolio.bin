@@ -16,35 +16,28 @@ const MusicPlayer = () => {
   const audioRef = useRef(null);
   const lastTapTime = useRef(0);
   const clickTimeout = useRef(null);
-  const isPlayingRef = useRef(false); // mirror of isPlaying to use inside callbacks
+  const isPlayingRef = useRef(false);
 
-  // Keep ref in sync
   useEffect(() => {
     isPlayingRef.current = isPlaying;
   }, [isPlaying]);
 
-  // Helper: reliably set src and optionally play
   const setSourceAndMaybePlay = (src, shouldPlay) => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    // Set source, force reload, apply volume
     audio.src = src;
     audio.load();
 
-    // Always ensure not muted and reasonable volume
     audio.muted = false;
     if (audio.volume === 0) audio.volume = 0.5;
 
     if (!shouldPlay) return;
 
-    // Wait for canplay before calling play to avoid errors
     const onCanPlay = () => {
-      // Try play in the same user gesture frame if possible
       const p = audio.play();
       if (p && typeof p.catch === "function") {
         p.catch(() => {
-          // If blocked, reflect paused state
           setIsPlaying(false);
           setInfoText("Wanna play music while scrolling?");
         });
@@ -54,7 +47,6 @@ const MusicPlayer = () => {
     audio.addEventListener("canplay", onCanPlay);
   };
 
-  // Play a specific track (called by click gestures)
   const playTrack = (index) => {
     setCurrentTrackIndex(index);
     setIsPlaying(true);
@@ -62,7 +54,6 @@ const MusicPlayer = () => {
     setSourceAndMaybePlay(playlist[index], true);
   };
 
-  // Toggle play/pause
   const togglePlay = () => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -72,14 +63,12 @@ const MusicPlayer = () => {
       setIsPlaying(false);
       setInfoText("Wanna play music while scrolling?");
     } else {
-      // Ensure current src is set correctly before playing
       setSourceAndMaybePlay(playlist[currentTrackIndex], true);
       setIsPlaying(true);
       setInfoText("Double tap to change the music");
     }
   };
 
-  // Shuffle to next random track, preserve play/pause state
   const shuffleNextTrack = () => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -92,16 +81,13 @@ const MusicPlayer = () => {
 
     setCurrentTrackIndex(nextIndex);
 
-    // If paused, only switch source; if playing, switch and continue
     setSourceAndMaybePlay(playlist[nextIndex], wasPlaying);
   };
 
-  // Auto shuffle on track end
   const handleTrackEnd = () => {
     shuffleNextTrack();
   };
 
-  // Initial setup: volume, preload
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -109,16 +95,13 @@ const MusicPlayer = () => {
     audio.volume = 0.03;
     audio.muted = false;
 
-    // Dev-time diagnostics (optional; remove in prod)
     const onError = () => {
-      // eslint-disable-next-line no-console
       console.warn("Audio error loading/playing:", audio.error);
     };
     audio.addEventListener("error", onError);
     return () => audio.removeEventListener("error", onError);
   }, []);
 
-  // Volume with up/down keys (desktop)
   useEffect(() => {
     const handleVolumeKeys = (e) => {
       const audio = audioRef.current;
@@ -141,7 +124,6 @@ const MusicPlayer = () => {
     return () => window.removeEventListener("keydown", handleVolumeKeys);
   }, []);
 
-  // Mobile double tap to change music
   const handleDoubleTapMobile = () => {
     const now = Date.now();
     if (now - lastTapTime.current < 400) {
@@ -150,12 +132,11 @@ const MusicPlayer = () => {
     lastTapTime.current = now;
   };
 
-  // Unified single vs double click on desktop
   const handleClick = () => {
     if (clickTimeout.current) {
       clearTimeout(clickTimeout.current);
       clickTimeout.current = null;
-      // Double click → change track, preserve play state
+
       shuffleNextTrack();
     } else {
       clickTimeout.current = setTimeout(() => {

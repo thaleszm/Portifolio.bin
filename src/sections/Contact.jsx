@@ -1,19 +1,13 @@
-// Importing React's useState hook for managing component state
 import { useState } from "react";
 
-// Importing motion component from Framer Motion for animations
 import { motion } from "framer-motion";
 
-// Importing EmailJS SDK
 import emailjs from "@emailjs/browser";
 
-// Importing Particles Background (same as Home component)
 import ParticlesBackground from "../components/ParticlesBackground.jsx";
 
-// Importing the contact image asset
 import Astra from "../assets/Astra.png";
 
-// Reading EmailJS credentials from environment variables (Vite)
 const SERVICE_ID = import.meta.env.VITE_SERVICE_ID;
 const TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID;
 const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY;
@@ -45,7 +39,7 @@ export default function Contact() {
     const newErrors = {};
 
     required.forEach(
-      (f) => !formData[f].trim() && (newErrors[f] = "Fill this field")
+      (f) => !formData[f].trim() && (newErrors[f] = "Fill this field"),
     );
 
     if (formData.service !== "other" && !formData.budget.trim())
@@ -71,11 +65,11 @@ export default function Contact() {
           from_name: formData.name,
           reply_to: formData.email,
         },
-        PUBLIC_KEY
+        PUBLIC_KEY,
       );
 
       setStatus("success");
-      setFormData({name: "",email: "",service: "",budget: "",idea: ""});
+      setFormData({ name: "", email: "", service: "", budget: "", idea: "" });
     } catch (err) {
       console.error("EmailJS Error:", err);
       setStatus("error");
@@ -84,15 +78,12 @@ export default function Contact() {
 
   return (
     <section
-      id="contact" className="w-full min-h-screen relative bg-black overflow-hidden text-white py-20 px-6 md:px-20 flex flex-col md:flex-row items-center gap-10">
-      {/* Particles Background */}
+      id="contact"
+      className="w-full min-h-screen relative bg-black overflow-hidden text-white py-20 px-6 md:px-20 flex flex-col md:flex-row items-center gap-10"
+    >
       <ParticlesBackground />
 
-  
-
-      {/* Contact Section Content */}
       <div className="relative z-10 w-full flex flex-col md:flex-row items-center gap-10">
-        {/* Left Animated Image Section */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -108,7 +99,6 @@ export default function Contact() {
           />
         </motion.div>
 
-        {/* Right Side Contact Form */}
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -118,7 +108,6 @@ export default function Contact() {
           <h2 className="text-3xl font-bold mb-6">Let’s Work Together</h2>
 
           <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
-            {/* Name field */}
             <div className="flex flex-col">
               <label className="mb-1">
                 Name <span className="text-red-500">*</span>
@@ -138,7 +127,6 @@ export default function Contact() {
               )}
             </div>
 
-            {/* Email field */}
             <div className="flex flex-col">
               <label className="mb-1">
                 Email <span className="text-red-500">*</span>
@@ -158,7 +146,6 @@ export default function Contact() {
               )}
             </div>
 
-            {/* Service dropdown */}
             <div className="flex flex-col">
               <label className="mb-1">
                 Service Needed <span className="text-red-500">*</span>
@@ -191,7 +178,6 @@ export default function Contact() {
               )}
             </div>
 
-            {/* Budget field */}
             {formData.service && formData.service !== "other" && (
               <div className="flex flex-col">
                 <label className="mb-1">
@@ -215,7 +201,6 @@ export default function Contact() {
               </div>
             )}
 
-            {/* Idea textarea */}
             <div className="flex flex-col">
               <label className="mb-1">
                 Idea <span className="text-red-500">*</span>
@@ -237,26 +222,24 @@ export default function Contact() {
               )}
             </div>
 
-            {/* Status message */}
             {status && (
               <p
                 className={`text-sm ${
                   status === "success"
                     ? "text-green-400"
                     : status === "error"
-                    ? "text-red-400"
-                    : "text-yellow-400"
+                      ? "text-red-400"
+                      : "text-yellow-400"
                 }`}
               >
                 {status === "sending"
                   ? "Sending..."
                   : status === "success"
-                  ? "Message sent successfully ✅"
-                  : "Something went wrong ❌"}
+                    ? "Message sent successfully ✅"
+                    : "Something went wrong ❌"}
               </p>
             )}
 
-            {/* Submit button */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

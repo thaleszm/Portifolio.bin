@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import avatar from "../assets/avator.png";
@@ -7,13 +6,12 @@ import { FaYoutube, FaInstagram } from "react-icons/fa6";
 import ParticleBackground from "../components/ParticlesBackground";
 
 const socials = [
-  { Icon: FaYoutube, label: "YouTube", href: "https://www.youtube.com/@gauravbitss" },
-  { Icon: FaXTwitter, label: "X", href: "https://x.com/gauravbuilds" },
-  { Icon: FaLinkedinIn, label: "LinkedIn", href: "https://www.linkedin.com/in/gaurav-gupta-4179671b0/" },
-  { Icon: FaInstagram, label: "Instagram", href: "https://www.instagram.com/gauravbits/" },
-  { Icon: FaGithub, label: "GitHub", href: "https://github.com/gauravgupta364" },
+  { Icon: FaYoutube, label: "YouTube", href: "" },
+  { Icon: FaXTwitter, label: "X", href: "" },
+  { Icon: FaLinkedinIn, label: "LinkedIn", href: "" },
+  { Icon: FaInstagram, label: "Instagram", href: "" },
+  { Icon: FaGithub, label: "GitHub", href: "" },
 ];
-
 
 const glowVariants = {
   initial: { scale: 1, y: 0, filter: "drop-shadow(0 0 0 rgba(0,0,0,0))" },
@@ -34,25 +32,27 @@ const glowVariants = {
 const Home = React.forwardRef((props, ref) => {
   const roles = useMemo(
     () => ["Software Developer", "Web Developer", "Content Creator"],
-    []
+    [],
   );
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
   const [deleting, setDeleting] = useState(false);
 
-  // typing effect logic
   useEffect(() => {
     const current = roles[index];
-    const timeout = setTimeout(() => {
-      if (!deleting && subIndex < current.length) setSubIndex((v) => v + 1);
-      else if (!deleting && subIndex === current.length)
-        setTimeout(() => setDeleting(true), 1200);
-      else if (deleting && subIndex > 0) setSubIndex((v) => v - 1);
-      else if (deleting && subIndex === 0) {
-        setDeleting(false);
-        setIndex((p) => (p + 1) % roles.length);
-      }
-    }, deleting ? 40 : 60); // original typing speed
+    const timeout = setTimeout(
+      () => {
+        if (!deleting && subIndex < current.length) setSubIndex((v) => v + 1);
+        else if (!deleting && subIndex === current.length)
+          setTimeout(() => setDeleting(true), 1200);
+        else if (deleting && subIndex > 0) setSubIndex((v) => v - 1);
+        else if (deleting && subIndex === 0) {
+          setDeleting(false);
+          setIndex((p) => (p + 1) % roles.length);
+        }
+      },
+      deleting ? 40 : 60,
+    );
     return () => clearTimeout(timeout);
   }, [subIndex, deleting, index, roles]);
 
@@ -64,7 +64,6 @@ const Home = React.forwardRef((props, ref) => {
     >
       <ParticleBackground />
 
-      {/* gradient blobs */}
       <div className="absolute inset-0">
         <div
           className="absolute -top-32 -left-32 
@@ -91,7 +90,6 @@ const Home = React.forwardRef((props, ref) => {
       </div>
 
       <div className="relative z-10 h-full w-full max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-2">
-        {/* left */}
         <motion.div
           className="flex flex-col justify-center h-full text-center lg:text-left relative"
           initial={{ opacity: 0, y: 120 }}
@@ -99,7 +97,6 @@ const Home = React.forwardRef((props, ref) => {
           transition={{ duration: 1.2, ease: "easeOut" }}
         >
           <div className="w-full lg:pr-24 mx-auto max-w-[48rem]">
-            {/* typing text */}
             <motion.div
               className="mb-3 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-white tracking-wide min-h-[1.6em]"
               initial={{ opacity: 0, y: 20 }}
@@ -113,7 +110,6 @@ const Home = React.forwardRef((props, ref) => {
               />
             </motion.div>
 
-            {/* name */}
             <motion.h1
               className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text 
               bg-gradient-to-r from-[#1CD8D2] via-[#00bf8f] to-[#302b63] drop-shadow-lg"
@@ -124,11 +120,10 @@ const Home = React.forwardRef((props, ref) => {
               Hello, I&apos;m
               <br />
               <span className="text-white font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl lg:whitespace-nowrap">
-                Gaurav Gupta
+                Thales Marques
               </span>
             </motion.h1>
 
-            {/* description */}
             <motion.p
               className="mt-6 text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto lg:mx-0"
               initial={{ opacity: 0, y: 40 }}
@@ -140,7 +135,6 @@ const Home = React.forwardRef((props, ref) => {
               make a difference.
             </motion.p>
 
-            {/* buttons */}
             <motion.div
               className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-6"
               initial={{ opacity: 0, y: 40 }}
@@ -165,7 +159,6 @@ const Home = React.forwardRef((props, ref) => {
               </a>
             </motion.div>
 
-            {/* socials */}
             <motion.div
               className="mt-10 flex gap-5 text-2xl md:text-3xl justify-center lg:justify-start"
               initial={{ opacity: 0, y: 40 }}
@@ -192,7 +185,6 @@ const Home = React.forwardRef((props, ref) => {
           </div>
         </motion.div>
 
-        {/* right */}
         <motion.div
           className="relative hidden lg:block"
           initial={{ opacity: 0, y: 100 }}
@@ -216,7 +208,11 @@ const Home = React.forwardRef((props, ref) => {
             src={avatar}
             alt="Gaurav Gupta avatar"
             className="absolute top-1/2 -translate-y-1/2 object-contain select-none pointer-events-none"
-            style={{ right: "-30px", width: "min(45vw, 780px)", maxHeight: "90vh" }}
+            style={{
+              right: "-30px",
+              width: "min(45vw, 780px)",
+              maxHeight: "90vh",
+            }}
             initial={{ opacity: 0, y: 40, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ delay: 1, duration: 1 }}
