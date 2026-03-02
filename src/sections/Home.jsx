@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 import avatar from "../assets/avator.png";
-import { FaXTwitter, FaLinkedinIn, FaGithub } from "react-icons/fa6";
-import { FaYoutube, FaInstagram } from "react-icons/fa6";
+import { FaLinkedinIn, FaGithub } from "react-icons/fa6";
+import { FaInstagram } from "react-icons/fa6";
 import ParticleBackground from "../components/ParticlesBackground";
 
 const socials = [

@@ -1,19 +1,19 @@
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  FaYoutube,
-  FaXTwitter,
-  FaLinkedinIn,
-  FaInstagram,
-  FaGithub,
-} from "react-icons/fa6";
+import { FaLinkedinIn, FaInstagram, FaGithub } from "react-icons/fa6";
 
 const socials = [
-  { Icon: FaYoutube, label: "YouTube", href: "" },
-  { Icon: FaXTwitter, label: "X", href: "" },
-  { Icon: FaLinkedinIn, label: "LinkedIn", href: "" },
-  { Icon: FaInstagram, label: "Instagram", href: "" },
-  { Icon: FaGithub, label: "GitHub", href: "" },
+  {
+    Icon: FaLinkedinIn,
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/thales-marques-692882349",
+  },
+  {
+    Icon: FaInstagram,
+    label: "Instagram",
+    href: "https://www.instagram.com/022.marquess",
+  },
+  { Icon: FaGithub, label: "GitHub", href: "https://github.com/thaleszm" },
 ];
 
 const glowVariants = {
@@ -36,8 +36,8 @@ const Footer = () => {
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_55%_at_30%_70%,rgba(16,185,129,0.30),transparent_70%)]" />
 
       <motion.div
-        initial={{ opacity: 0, y: 30 }} // Start faded & lowered
-        whileInView={{ opacity: 1, y: 0 }} // Animate when scrolled into view
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className="relative z-10 px-4 sm:px-6 md:px-8 lg:px-10 py-16 md:py-20 flex flex-col items-center text-center space-y-6"
       >
