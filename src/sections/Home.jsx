@@ -6,11 +6,17 @@ import { FaYoutube, FaInstagram } from "react-icons/fa6";
 import ParticleBackground from "../components/ParticlesBackground";
 
 const socials = [
-  { Icon: FaYoutube, label: "YouTube", href: "" },
-  { Icon: FaXTwitter, label: "X", href: "" },
-  { Icon: FaLinkedinIn, label: "LinkedIn", href: "" },
-  { Icon: FaInstagram, label: "Instagram", href: "" },
-  { Icon: FaGithub, label: "GitHub", href: "" },
+  {
+    Icon: FaLinkedinIn,
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/thales-marques-692882349",
+  },
+  {
+    Icon: FaInstagram,
+    label: "Instagram",
+    href: "https://www.instagram.com/022.marquess",
+  },
+  { Icon: FaGithub, label: "GitHub", href: "https://github.com/thaleszm" },
 ];
 
 const glowVariants = {
@@ -31,7 +37,7 @@ const glowVariants = {
 
 const Home = React.forwardRef((props, ref) => {
   const roles = useMemo(
-    () => ["Software Developer", "Web Developer", "Content Creator"],
+    () => ["Software Developer", "Web Developer", "Tech Enthusiast"],
     [],
   );
   const [index, setIndex] = useState(0);

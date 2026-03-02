@@ -148,7 +148,7 @@ const MusicPlayer = () => {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-center space-y-2">
-      <p className="text-xs text-gray-300 italic">{infoText}</p>
+      <p className="text-xs text-gray-300 font-mono">{infoText}</p>
 
       <audio
         ref={audioRef}
