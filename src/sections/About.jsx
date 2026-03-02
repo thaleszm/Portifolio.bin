@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import p from "../assets/p.jpg";
+import Logo from "../assets/Capture.png";
 
 export default function About() {
   return (
@@ -30,12 +30,12 @@ export default function About() {
           >
             <div className="absolute inset-0 " />
 
-            <img src={p} alt="test" />
+            <img src={Logo} alt="test" />
           </motion.div>
 
           <div className="flex-1 flex flex-col justify-center text-center md:text-left">
             <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#1CD8D2] via-[#00bf8f] to-[#302b63]">
-              Gaurav Gupta
+              Thales Marques
             </h2>
             <p className="mt-2 text-lg sm:text-xl text-white/90 font-semibold">
               Full Stack Developer
@@ -51,7 +51,7 @@ export default function About() {
 
             <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 max-w-xl">
               {[
-                { label: "Experience", value: "5+ years" },
+                { label: "Experience", value: "3+ years" },
                 { label: "Specialty", value: "Full Stack" },
                 { label: "Focus", value: "Performance & UX" },
               ].map((item, i) => (
@@ -102,9 +102,9 @@ export default function About() {
               About Me
             </h3>
             <p className="text-gray-300 leading-relaxed text-base sm:text-lg">
-              I’m a Software Developer, Content Creator, and Web Developer —
+              I’m a Software Developer, Tech Enthusiast, and Web Developer —
               passionate about building fast, resilient applications and sharing
-              coding insights on Instagram and YouTube.
+              coding insights on Github and Discord.
             </p>
             <p className="mt-4 text-gray-400 text-base sm:text-lg">
               I love turning ideas into scalable, user‑friendly products that
