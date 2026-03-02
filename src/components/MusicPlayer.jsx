@@ -106,7 +106,7 @@ const MusicPlayer = () => {
     const audio = audioRef.current;
     if (!audio) return;
     audio.preload = "auto";
-    audio.volume = 0.6;
+    audio.volume = 0.03;
     audio.muted = false;
 
     // Dev-time diagnostics (optional; remove in prod)
@@ -125,10 +125,16 @@ const MusicPlayer = () => {
       if (!audio) return;
       if (e.key === "ArrowUp") {
         e.preventDefault();
-        audio.volume = Math.min(1, Math.round((audio.volume + 0.05) * 100) / 100);
+        audio.volume = Math.min(
+          1,
+          Math.round((audio.volume + 0.05) * 100) / 100,
+        );
       } else if (e.key === "ArrowDown") {
         e.preventDefault();
-        audio.volume = Math.max(0, Math.round((audio.volume - 0.05) * 100) / 100);
+        audio.volume = Math.max(
+          0,
+          Math.round((audio.volume - 0.05) * 10) / 100,
+        );
       }
     };
     window.addEventListener("keydown", handleVolumeKeys, { passive: false });
